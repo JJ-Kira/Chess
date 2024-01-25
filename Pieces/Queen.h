@@ -45,11 +45,6 @@ class Queen : public Piece
     * @return If the move is legal.
     */
     bool CanMoveTo(Square& investigatedPosition) const;
-    
-    /**
-     * Displays the piece.
-     */
-    void Display() const;
 };
 
 #endif

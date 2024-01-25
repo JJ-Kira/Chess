@@ -65,11 +65,9 @@ class Pawn : public RestrictedPiece
      */
     void Display() const;
    
-   
  private:
 
-    // Private attributes
-    Piece* _delegate;
+    Piece* delegate;
 };
 
 #endif

@@ -64,12 +64,13 @@ class Piece
      *
      * @return Piece's color.
      */
-    string Color() const;    
+    int Color() const;    
     
     /**
     * Displays the piece.
     */
-    virtual void Display() const = 0;   
+    void Display();
+    //virtual void Display() const = 0;   
 
     /**
     * Determines if the piece can move to a given square
@@ -98,7 +99,8 @@ class Piece
  protected:
 
     bool isWhite;
-    string color;
+    int color;
+    string symbol;
     
  private:
 
