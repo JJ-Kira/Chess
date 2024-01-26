@@ -5,10 +5,6 @@ Rook::Rook(bool isWhite) : RestrictedPiece(isWhite)
     //symbol = isWhite ? L"\u2656" : L"\u265C";
     wcsncpy_s(symbol, isWhite ? L"\u2656" : L"\u265C", 2); // Copying the Unicode character to p
     symbol[2] = L'\0'; // Ensuring null termination
-    HANDLE cons = GetStdHandle(STD_OUTPUT_HANDLE);
-    wchar_t p[] = L"\u265B";
-    DWORD n;
-    WriteConsoleW(cons, p, wcslen(p), &n, NULL);
 }
 
 Rook::~Rook()

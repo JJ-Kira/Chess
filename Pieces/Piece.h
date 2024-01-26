@@ -96,8 +96,6 @@ class Piece
     */
     Square* Position() const;
 
-    void DisplayPiece(string symbol);
-
  protected:
 
     bool isWhite;
@@ -109,6 +107,5 @@ class Piece
     Square* square;
 };
 
-#endif
 
-#include <windows.h>
+#endif

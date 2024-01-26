@@ -1,3 +1,5 @@
+#include <windows.h>
+
 #include "Piece.h"
 #include "Pawn.h"
 #include "Queen.h"
@@ -140,4 +142,3 @@ void Pawn::Display()
         WriteConsoleW(cons, symbol, wcslen(symbol), &n, NULL);
     }
 }
-

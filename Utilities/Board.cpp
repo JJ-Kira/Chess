@@ -148,24 +148,25 @@ bool Board::IsEndRow(Square& location) const
     return (location.GetY() == 0 || location.GetY() == (DIMENSION - 1));
 }
 
-void Board::Display(ostream& outStream) const
+void Board::Display(ostream& outputStream) const
 {
-    outStream << endl << "   A  B  C  D  E  F  G  H" << endl;
-    outStream << " -------------------------" << endl;
+    outputStream << endl << "    A   B   C   D   E   F   G   H" << endl;
+    outputStream << " ----------------------------------" << endl;
     for (int y = DIMENSION - 1; y >= 0; y--) // black on top, white on bottom
     {
-        outStream << y + 1;
+        outputStream << y + 1;
         for (int x = 0; x < DIMENSION; x++)
         {
-            outStream << "|";
-            if(squares[x][y]->Occupied())
+            outputStream << " | ";
+            outputStream.flush();
+            if (squares[x][y]->Occupied())
                 squares[x][y]->GetOccupyingPiece()->Display();
             else
-                outStream << "  ";
+                outputStream << " ";
         }
-        outStream << "|" << y + 1 << endl << " -------------------------" << endl;
+        outputStream << " | " << y + 1 << endl << " ----------------------------------" << endl;
     }
-    outStream << "   A  B  C  D  E  F  G  H" << endl << endl;
+    outputStream << "    A   B   C   D   E   F   G   H" << endl << endl;
 }
 
 Board* Board::board = NULL;

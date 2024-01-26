@@ -7,11 +7,6 @@
 
 int main(int argc, char* const argv[])
 {
-    HANDLE cons = GetStdHandle(STD_OUTPUT_HANDLE);
-    wchar_t p[] = L"\u265B";
-    DWORD n;
-    WriteConsoleW(cons, p, wcslen(p), &n, NULL);
-
     Player* currentPlayer = NULL;
 
     ChessGame::Initialize();

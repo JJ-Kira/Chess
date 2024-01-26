@@ -9,9 +9,9 @@ Square::~Square()
 {
 }
 
-void Square::SetOccupiedByPiece(Piece* piece)
+void Square::SetOccupiedByPiece(Piece* aPiece)
 {
-    piece = piece;
+    piece = aPiece;
 }
 
 int Square::GetX() const

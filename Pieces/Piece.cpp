@@ -91,6 +91,7 @@ bool Piece::Move(Player& player, Square& destinationSquare)
 void Piece::Display()
 {
     //cout << symbol;
+
     HANDLE cons = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD n;
     WriteConsoleW(cons, symbol, wcslen(symbol), &n, NULL);
