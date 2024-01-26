@@ -96,11 +96,13 @@ class Piece
     */
     Square* Position() const;
 
+    void DisplayPiece(string symbol);
+
  protected:
 
     bool isWhite;
     int color;
-    string symbol;
+    wchar_t symbol[3];
     
  private:
 
@@ -108,3 +110,5 @@ class Piece
 };
 
 #endif
+
+#include <windows.h>

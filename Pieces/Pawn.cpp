@@ -1,3 +1,4 @@
+#include "Piece.h"
 #include "Pawn.h"
 #include "Queen.h"
 #include "Bishop.h"
@@ -7,7 +8,9 @@
 
 Pawn::Pawn(bool isWhite) : RestrictedPiece(isWhite), delegate(NULL)
 {
-    symbol = isWhite ? '\u2659' : '\u265F';
+    //symbol = isWhite ? L"\u2659" : L"\u265F";
+    wcsncpy_s(symbol, isWhite ? L"\u2659" : L"\u265F", 2); // Copying the Unicode character to p
+    symbol[2] = L'\0'; // Ensuring null termination
 }
 
 Pawn::~Pawn()
@@ -126,11 +129,15 @@ bool Pawn::CanMoveTo(Square& location) const
     return validMove;
 }
 
-void Pawn::Display() const
+void Pawn::Display()
 {
-    if(delegate)
+    if (delegate)
         delegate->Display();
     else
-        cout << symbol;
+    {
+        HANDLE cons = GetStdHandle(STD_OUTPUT_HANDLE);
+        DWORD n;
+        WriteConsoleW(cons, symbol, wcslen(symbol), &n, NULL);
+    }
 }
 

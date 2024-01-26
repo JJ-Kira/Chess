@@ -90,9 +90,10 @@ bool Piece::Move(Player& player, Square& destinationSquare)
 
 void Piece::Display()
 {
-    //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
-    cout << symbol;
-    //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+    //cout << symbol;
+    HANDLE cons = GetStdHandle(STD_OUTPUT_HANDLE);
+    DWORD n;
+    WriteConsoleW(cons, symbol, wcslen(symbol), &n, NULL);
 }
 
 void Piece::SetLocation(Square* newLocation)

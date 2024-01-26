@@ -8,6 +8,7 @@
 #define PLAYER_H
 
 #include <set>
+#include <windows.h>
 
 #include "../Pieces/Piece.h"
 #include "../Pieces/King.h"
@@ -94,6 +95,7 @@ private:
     set<Piece*>& ownedPieces;
     set<Piece*> capturedPieces;
     King& king;
+    int color;
 };
 
 #endif

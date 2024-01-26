@@ -2,7 +2,9 @@
 
 Knight::Knight(bool isWhite) : Piece(isWhite)
 {
-    symbol = isWhite ? '\u2658' : '\u265E';
+    //symbol = isWhite ? L"\u2658" : L"\u265E";
+    wcsncpy_s(symbol, isWhite ? L"\u2658" : L"\u265E", 2); // Copying the Unicode character to p
+    symbol[2] = L'\0'; // Ensuring null termination
 }
 
 Knight::~Knight()

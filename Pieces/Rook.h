@@ -9,7 +9,6 @@
 #define ROOK_H
 
 #include <iostream>
-#include <windows.h>
 
 #include "RestrictedPiece.h"
 #include "../Utilities/Square.h"

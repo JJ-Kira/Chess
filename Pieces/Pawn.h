@@ -63,7 +63,7 @@ class Pawn : public RestrictedPiece
     /**
      * Displays the piece.
      */
-    void Display() const;
+    void Display();
    
  private:
 
