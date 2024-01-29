@@ -20,6 +20,8 @@ class ChessGame
 {
  public:
 
+     ChessGame();
+
     ~ChessGame();
 
     /**
@@ -27,6 +29,12 @@ class ChessGame
      *
      */
     static void Initialize();
+
+    /**
+     * Starts the prepared game.
+     *
+     */
+    static void Start();
 
     /**
     * Gets the player whose turn is next.
@@ -44,14 +52,9 @@ class ChessGame
     static Player* GetPlayersOpponent(Player& player);
 
  private:
-    
-    ChessGame();
 
-    static Player* player1;
-    static Player* player2;
-    static Player* nextPlayer;
-    static set<Piece*> whitePieces;
-    static set<Piece*> blackPieces;
+    static Player *player1, *player2, *nextPlayer;
+    static set<Piece*> whitePieces, blackPieces;
 };
 
 #endif
