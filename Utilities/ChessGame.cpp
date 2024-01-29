@@ -28,10 +28,52 @@ ChessGame::~ChessGame()
     
     delete &player1;
     delete &player2;
+
+    LPCWSTR fontPath = L"Fonts/DejaVu Sans Mono for Powerline.ttf";
+    if (RemoveFontResourceEx(fontPath, FR_NOT_ENUM, 0) == 0) {
+        std::cerr << "Failed to remove font." << std::endl;
+    }
 }
-    
+
+void MaximizeWindow()
+{
+    HWND console = GetConsoleWindow();
+    RECT r;
+    GetWindowRect(console, &r); //stores the console's current dimensions
+
+    MoveWindow(console, r.left, r.top, 800, 800, TRUE);
+}
+
+void SetFont()
+{
+    LPCWSTR fontPath = L"Fonts/DejaVu Sans Mono for Powerline.ttf";
+
+    if (AddFontResourceEx(fontPath, FR_NOT_ENUM, 0) == 0) {
+        std::cerr << "Failed to load font." << std::endl;
+    }
+
+    CONSOLE_FONT_INFOEX cfi;
+    cfi.cbSize = sizeof(cfi);
+    cfi.nFont = 0;
+    cfi.dwFontSize.X = 0; // Width of each character in the font
+    cfi.dwFontSize.Y = 32; // Height
+    cfi.FontFamily = FF_DONTCARE;
+    cfi.FontWeight = FW_NORMAL;
+    wcscpy_s(cfi.FaceName, L"DejaVu Sans Mono for Powerline");
+    SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+
+    if (RemoveFontResourceEx(fontPath, FR_NOT_ENUM, 0) == 0) {
+        std::cerr << "Failed to remove font." << std::endl;
+    }
+}
+
 void ChessGame::Initialize()
 {
+    // set up console visuals
+    SetFont();
+    MaximizeWindow();
+
+    // set up the game
     Piece* piece;
     King* king;
     Square* square;
@@ -144,6 +186,23 @@ void ChessGame::Initialize()
     player2 = new Player("Black", false, *king, blackPieces);
     
     nextPlayer = player2;
+}
+
+void ChessGame::Start()
+{
+    Board::GetBoard()->Display(cout);
+    Player* currentPlayer = NULL;
+
+    bool endGame = false;
+    while (!endGame)
+    {
+        currentPlayer = ChessGame::GetNextPlayer();
+        while (!currentPlayer->MakeAMove(&endGame))
+        {
+            cerr << "Invalid move... Try again." << endl;
+        }
+        Board::GetBoard()->Display(cout);
+    }
 }
     
 Player* ChessGame::GetNextPlayer()

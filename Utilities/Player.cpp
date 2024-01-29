@@ -20,7 +20,7 @@ Player::~Player()
 {
 }
 
-bool Player::MakeAMove()
+bool Player::MakeAMove(bool *isInCheck)
 {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
     string badInput; // handling invalid input
@@ -34,6 +34,7 @@ bool Player::MakeAMove()
     if(InCheck())
     {
         cout << name << " is in check!" << endl;
+        *isInCheck = true;
     }
     
     // player input

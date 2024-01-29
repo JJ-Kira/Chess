@@ -36,7 +36,7 @@ public:
      *
      * @return Whether a move has been performed successfully.
      */
-    bool MakeAMove();
+    bool MakeAMove(bool* isInCheck);
     
     /**
      * Checks if the player is currently in check.

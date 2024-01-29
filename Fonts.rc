@@ -1,0 +1,3 @@
+#include "resource.h"
+
+IDR_FONT1 RCDATA "Fonts\DejaVu Sans Mono for Powerline.ttf"

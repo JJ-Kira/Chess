@@ -3,7 +3,7 @@
 King::King(bool isWhite) : RestrictedPiece(isWhite)
 {
     //symbol = isWhite ? L"\u2654" : L"\u265A";
-    wcsncpy_s(symbol, isWhite ? L"\u2654" : L"\u265A", 2); // Copying the Unicode character to p
+    wcsncpy_s(symbol, L"\u265A", 2); // Copying the Unicode character to p
     symbol[2] = L'\0'; // Ensuring null termination
 }
 
