@@ -1,3 +1,4 @@
+#include <Windows.h>
 #include "Board.h"
 #include "../Pieces/Piece.h"
 
@@ -148,25 +149,86 @@ bool Board::IsEndRow(Square& location) const
     return (location.GetY() == 0 || location.GetY() == (DIMENSION - 1));
 }
 
+void PrintUnicode(const wchar_t *unicode)
+{
+    HANDLE cons = GetStdHandle(STD_OUTPUT_HANDLE);
+    DWORD n;
+    WriteConsoleW(cons, unicode, wcslen(unicode), &n, NULL);
+}
+
 void Board::Display(ostream& outputStream) const
 {
-    outputStream << endl << "    A   B   C   D   E   F   G   H" << endl;
-    outputStream << " ----------------------------------" << endl;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
+    outputStream << endl << "     A   B   C   D   E   F   G   H" << endl;
+
+    outputStream << "   ";
+    PrintUnicode(L"\u250C");
+    for (size_t i = 0; i < 7; i++)
+    {
+        for (size_t i = 0; i < 3; i++)
+            PrintUnicode(L"\u2500");
+        PrintUnicode(L"\u252C");
+    }
+    for (size_t i = 0; i < 3; i++)
+        PrintUnicode(L"\u2500");
+    PrintUnicode(L"\u2510");
+    outputStream << endl << " ";
+
     for (int y = DIMENSION - 1; y >= 0; y--) // black on top, white on bottom
     {
         outputStream << y + 1;
         for (int x = 0; x < DIMENSION; x++)
         {
-            outputStream << " | ";
+            outputStream << " ";
+            PrintUnicode(L"\u2502");
+            outputStream << " ";
+
             outputStream.flush();
             if (squares[x][y]->Occupied())
+            {
+                int color = squares[x][y]->GetOccupyingPiece()->IsWhite() ? 15 : 12;
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
                 squares[x][y]->GetOccupyingPiece()->Display();
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
+            }
             else
                 outputStream << " ";
         }
-        outputStream << " | " << y + 1 << endl << " ----------------------------------" << endl;
+        outputStream << " ";
+        PrintUnicode(L"\u2502");
+
+        if (y != 0)
+        {
+            outputStream << endl << "   ";
+            PrintUnicode(L"\u251C");
+            for (size_t i = 0; i < 7; i++)
+            {
+                for (size_t i = 0; i < 3; i++)
+                    PrintUnicode(L"\u2500");
+                PrintUnicode(L"\u253C");
+            }
+            for (size_t i = 0; i < 3; i++)
+                PrintUnicode(L"\u2500");
+            PrintUnicode(L"\u2524");
+            outputStream << endl << " ";
+        }
+        else {
+            outputStream << endl << "   ";
+            PrintUnicode(L"\u2514");
+            for (size_t i = 0; i < 7; i++)
+            {
+                for (size_t i = 0; i < 3; i++)
+                    PrintUnicode(L"\u2500");
+                PrintUnicode(L"\u2534");
+            }
+            for (size_t i = 0; i < 3; i++)
+                PrintUnicode(L"\u2500");
+            PrintUnicode(L"\u2518");
+            outputStream << endl;
+        }
     }
     outputStream << "    A   B   C   D   E   F   G   H" << endl << endl;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
 
 Board* Board::board = NULL;

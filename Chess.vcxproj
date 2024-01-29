@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -150,10 +150,17 @@
     <ClInclude Include="Pieces\Queen.h" />
     <ClInclude Include="Pieces\RestrictedPiece.h" />
     <ClInclude Include="Pieces\Rook.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Utilities\Board.h" />
     <ClInclude Include="Utilities\ChessGame.h" />
     <ClInclude Include="Utilities\Player.h" />
     <ClInclude Include="Utilities\Square.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Fonts\DejaVu Sans Mono for Powerline.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Fonts.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -11,7 +11,7 @@
 Pawn::Pawn(bool isWhite) : RestrictedPiece(isWhite), delegate(NULL)
 {
     //symbol = isWhite ? L"\u2659" : L"\u265F";
-    wcsncpy_s(symbol, isWhite ? L"\u2659" : L"\u265F", 2); // Copying the Unicode character to p
+    wcsncpy_s(symbol, L"\u265F", 2); // Copying the Unicode character to p
     symbol[2] = L'\0'; // Ensuring null termination
 }
 

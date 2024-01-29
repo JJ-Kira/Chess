@@ -28,6 +28,11 @@ ChessGame::~ChessGame()
     
     delete &player1;
     delete &player2;
+
+    LPCWSTR fontPath = L"Fonts/DejaVu Sans Mono for Powerline.ttf";
+    if (RemoveFontResourceEx(fontPath, FR_NOT_ENUM, 0) == 0) {
+        std::cerr << "Failed to remove font." << std::endl;
+    }
 }
     
 void ChessGame::Initialize()
